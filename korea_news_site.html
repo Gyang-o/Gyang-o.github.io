@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korea Herald - Breaking News & Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .date-weather {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem 0;
+            border-radius: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Breaking News Banner */
+        .breaking-news {
+            background: #e53935;
+            color: white;
+            padding: 0.8rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        .breaking-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .breaking-label {
+            background: #fff;
+            color: #e53935;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-story {
+            position: relative;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .main-story:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+        }
+
+        .category-tag {
+            background: #1a237e;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .story-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .story-excerpt {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .story-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Secondary Stories */
+        .secondary-stories {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .secondary-story {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .secondary-story:hover {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .secondary-story h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .widget-header {
+            background: linear-gradient(135deg, #1a237e 0%, #3f51b5 100%);
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .widget-content {
+            padding: 1rem;
+        }
+
+        .trending-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .trending-number {
+            background: #e53935;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            margin: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #1a237e;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .category-articles {
+            padding: 1rem;
+        }
+
+        .mini-article {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mini-article:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .mini-article h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .mini-article .meta {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #3f51b5;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #3f51b5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+        }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 1rem;
+            z-index: 1000;
+            display: none;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #303f9f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <a href="#" class="logo">Korea Herald</a>
+                <div class="date-weather">
+                    <div class="date" id="currentDate"></div>
+                    <div class="weather">
+                        <span>🌤️</span>
+                        <span>Seoul 22°C</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showSection('home')">Home</a></li>
+                    <li><a href="#" onclick="showSection('politics')">Politics</a></li>
+                    <li><a href="#" onclick="showSection('economy')">Economy</a></li>
+                    <li><a href="#" onclick="showSection('society')">Society</a></li>
+                    <li><a href="#" onclick="showSection('culture')">Culture</a></li>
+                    <li><a href="#" onclick="showSection('sports')">Sports</a></li>
+                    <li><a href="#" onclick="showSection('tech')">Technology</a></li>
+                    <li><a href="#" onclick="showSection('opinion')">Opinion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breaking News -->
+    <div class="breaking-news">
+        <div class="container">
+            <div class="breaking-content">
+                <span class="breaking-label">BREAKING</span>
+                <span id="breakingNewsText">Korean tech giant announces major breakthrough in quantum computing research</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-column">
+                    <!-- Hero Section -->
+                    <section class="hero-section">
+                        <article class="main-story">
+                            <div class="story-image">📰</div>
+                            <div class="story-content">
+                                <span class="category-tag">Politics</span>
+                                <h1 class="story-title">South Korea Strengthens Diplomatic Ties with Southeast Asian Nations</h1>
+                                <p class="story-excerpt">President announces new economic partnership initiatives during ASEAN summit, focusing on technology transfer and cultural exchange programs...</p>
+                                <div class="story-meta">
+                                    <span>By John Kim</span>
+                                    <span>2 hours ago</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <div class="secondary-stories">
+                            <article class="secondary-story">
+                                <span class="category-tag">Economy</span>
+                                <h3>Samsung Reports Record Q3 Earnings</h3>
+                                <p class="story-excerpt">Semiconductor division drives growth with 15% increase...</p>
+                                <div class="story-meta">
+                                    <span>Sarah Lee</span>
+                                    <span>4 hours ago</span>
+                                </div>
+                            </article>
+                            
+                            <article class="secondary-story">
+                                <span class="category-tag">Society</span>
+                                <h3>Seoul Implements New Green Transportation Plan</h3>
+                                <p class="story-excerpt">City aims to reduce carbon emissions by 40% by 2030...</p>
+                                <div class="story-meta">
+                                    <span>Mike Park</span>
+                                    <span>6 hours ago</span>
+                                </div>
+                            </article>
+                            
+                            <article class="secondary-story">
+                                <span class="category-tag">Culture</span>
+                                <h3>K-Pop Group Achieves Historic Billboard Success</h3>
+                                <p class="story-excerpt">First Korean act to hold top 3 positions simultaneously...</p>
+                                <div class="story-meta">
+                                    <span>Lisa Choi</span>
+                                    <span>8 hours ago</span>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="widget">
+                        <div class="widget-header">Trending Now</div>
+                        <div class="widget-content">
+                            <div class="trending-item">
+                                <div class="trending-number">1</div>
+                                <div>
+                                    <h4>North Korea Summit Developments</h4>
+                                    <p class="meta">12,540 views</p>
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div class="trending-number">2</div>
+                                <div>
+                                    <h4>Cryptocurrency Market Surge</h4>
+                                    <p class="meta">8,920 views</p>
+                                </div>
+                            </div>
+                            <div class="trending-item">
+                                <div class="trending-number">3</div>
+                                <div>
+                                    <h4>Olympic Preparation Updates</h4>
+                                    <p class="meta">6,750 views</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <div class="widget-header">Newsletter</div>
+                        <div class="widget-content">
+                            <p>Stay updated with our daily newsletter</p>
+                            <div style="margin-top: 1rem;">
+                                <input type="email" placeholder="Enter your email" style="width: 100%; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+                                <button class="btn" style="width: 100%;">Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Categories Section -->
+            <section class="categories-section">
+                <h2 class="section-title">Latest by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-header">Politics</div>
+                        <div class="category-articles">
+                            <div class="mini-article">
+                                <h4>Parliamentary Session Addresses Climate Policy</h4>
+                                <p class="meta">3 hours ago | Political Desk</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>Defense Minister Visits Border Region</h4>
+                                <p class="meta">5 hours ago | Defense Reporter</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>Local Elections Preparation Underway</h4>
+                                <p class="meta">1 day ago | Election Team</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-header">Economy</div>
+                        <div class="category-articles">
+                            <div class="mini-article">
+                                <h4>Stock Market Reaches New High</h4>
+                                <p class="meta">2 hours ago | Business Desk</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>Export Numbers Show Strong Recovery</h4>
+                                <p class="meta">4 hours ago | Trade Reporter</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>Banking Sector Reforms Announced</h4>
+                                <p class="meta">6 hours ago | Finance Team</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-header">Technology</div>
+                        <div class="category-articles">
+                            <div class="mini-article">
+                                <h4>5G Network Expansion Accelerates</h4>
+                                <p class="meta">1 hour ago | Tech Reporter</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>AI Startup Receives Major Investment</h4>
+                                <p class="meta">7 hours ago | Innovation Desk</p>
+                            </div>
+                            <div class="mini-article">
+                                <h4>Cybersecurity Measures Enhanced</h4>
+                                <p class="meta">12 hours ago | Security Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Korea Herald</h3>
+                    <p>Korea Herald is your trusted source for news, analysis, and insights about Korea and the region. Established with a commitment to journalistic excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Sections</h3>
+                    <ul>
+                        <li><a href="#">Politics</a></li>
+                        <li><a href="#">Economy</a></li>
+                        <li><a href="#">Society</a></li>
+                        <li><a href="#">Culture</a></li>
+                        <li><a href="#">Sports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="#">RSS Feeds</a></li>
+                        <li><a href="#">Archives</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Advertising</a></li>
+                        <li><a href="#">Subscriptions</a></li>
+                        <li><a href="#">Press Releases</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Korea Herald. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Toggle Button -->
+    <button class="admin-toggle" onclick="toggleAdmin()">⚙️</button>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h3>Content Management</h3>
+        <form id="articleForm">
+            <div class="form-group">
+                <label for="articleTitle">Article Title:</label>
+                <input type="text" id="articleTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="articleCategory">Category:</label>
+                <select id="articleCategory">
+                    <option value="politics">Politics</option>
+                    <option value="economy">Economy</option>
+                    <option value="society">Society</option>
+                    <option value="culture">Culture</option>
+                    <option value="sports">Sports</option>
+                    <option value="tech">Technology</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="articleExcerpt">Excerpt:</label>
+                <textarea id="articleExcerpt" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="articleAuthor">Author:</label>
+                <input type="text" id="articleAuthor">
+            </div>
+            <button type="submit" class="btn">Publish Article</button>
+            <button type="button" class="btn" onclick="toggleAdmin()" style="background: #666;">Close</button>
+        </form>
+    </div>
+
+    <script>
+        // Current date display
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Breaking news rotation
+        const breakingNews = [
+            "Korean tech giant announces major breakthrough in quantum computing research",
+            "Seoul Stock Exchange hits all-time high amid economic recovery",
+            "K-Pop industry contributes $12 billion to national economy in 2024",
+            "South Korea launches ambitious green energy initiative",
+            "Historic cultural exchange program with ASEAN nations begins"
+        ];
+
+        let newsIndex = 0;
+        function rotateBreakingNews() {
+            document.getElementById('breakingNewsText').textContent = breakingNews[newsIndex];
+            newsIndex = (newsIndex + 1) % breakingNews.length;
+        }
+
+        // Article storage
+        let articles = [];
+
+        // Section navigation
+        function showSection(section) {
+            // This would typically load different content
+            console.log('Navigating to:', section);
+        }
+
+        // Admin panel toggle
+        function toggleAdmin() {
+            const panel = document.getElementById('adminPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Article form submission
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const article = {
+                id: Date.now(),
+                title: document.getElementById('articleTitle').value,
+                category: document.getElementById('articleCategory').value,
+                excerpt: document.getElementById('articleExcerpt').value,
+                author: document.getElementById('articleAuthor').value,
+                date: new Date().toLocaleString(),
+                views: Math.floor(Math.random() * 10000)
+            };
+            
+            articles.push(article);
+            console.log('Article published:', article);
+            
+            // Reset form
+            this.reset();
+            
+            // Close admin panel
+            toggleAdmin();
+            
+            // Update trending (simplified)
+            updateTrendingSection();
+            
+            alert('Article published successfully!');
+        });
+
+        // Update trending section with new articles
+        function updateTrendingSection() {
+            // This would typically update the trending section with real data
+            console.log('Updating trending section with', articles.length, 'articles');
+        }
+
+        // Load more articles (pagination)
+        function loadMoreArticles() {
+            // This would load more articles from a backend
+            console.log('Loading more articles...');
+        }
+
+        // Search functionality
+        function searchArticles(query) {
+            // This would implement search functionality
+            console.log('Searching for:', query);
+        }
+
+        // Social sharing
+        function shareArticle(articleId, platform) {
+            // This would implement social sharing
+            console.log('Sharing article', articleId, 'on', platform);
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDate();
+            rotateBreakingNews();
+            
+            // Update date every hour
+            setInterval(updateDate, 3600000);
+            
+            // Rotate breaking news every 10 seconds
+            setInterval(rotateBreakingNews, 10000);
+        });
+
+        // Responsive menu toggle for mobile
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.nav-menu');
+            menu.classList.toggle('mobile-active');
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Article view tracking
+        function trackView(articleId) {
+            // This would typically send data to analytics
+            console.log('Tracking view for article:', articleId);
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(email) {
+            // This would handle newsletter subscription
+            console.log('Newsletter subscription for:', email);
+            alert('Thank you for subscribing to our newsletter!');
+        }
+    </script>
+</body>
+</html>
