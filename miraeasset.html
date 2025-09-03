@@ -677,7 +677,7 @@
     <div class="container">
         <div class="header">
             <h1>미래에셋 마스터스 아카데미</h1>
-            <div class="subtitle">12강 참석자 명단 관리 시스템 (실시간 동기화)</div>
+            <div class="subtitle">참석자 명단 관리 시스템</div>
         </div>
 
         <div class="connection-status">
@@ -701,7 +701,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="number" id="generalCount">0</div>
-                    <div class="label">일반 참석자</div>
+                    <div class="label">참석자</div>
                 </div>
             </div>
 
@@ -709,7 +709,7 @@
                 <div class="section-header">
                     <div class="section-title">
                         <span class="icon">👥</span>
-                        일반 참석자
+                        참석자
                     </div>
                     <button class="btn btn-success" onclick="openAddModal('general')">
                         <span>+</span> 참석자 추가
@@ -1056,7 +1056,7 @@
         window.openAddModal = function(type) {
             currentEditType = type;
             currentEditId = null;
-            document.getElementById('modalTitle').textContent = type === 'general' ? '일반 참석자 추가' : '임원진/스태프 추가';
+            document.getElementById('modalTitle').textContent = type === 'general' ? '참석자 추가' : '임원진/스태프 추가';
             document.getElementById('attendeeForm').reset();
             document.getElementById('attendeeModal').style.display = 'block';
         }
@@ -1195,7 +1195,7 @@
             csvContent += "미래에셋 마스터스 아카데미 12강 전체 참석자 명단\n";
             csvContent += `내보내기 날짜: ${currentDate}\n\n`;
             
-            csvContent += "=== 일반 참석자 ===\n";
+            csvContent += "=== 참석자 ===\n";
             csvContent += "번호,성명,소속,직책,연락처,참석여부,차량번호,비고\n";
             generalAttendees.forEach((attendee, index) => {
                 csvContent += `${index + 1},"${attendee.name}","${attendee.organization || ''}","${attendee.position || ''}","${attendee.contact || ''}","${attendee.attendance ? '참석' : '불참'}","${attendee.carNumber || ''}","${attendee.note || ''}"\n`;
@@ -1239,9 +1239,9 @@
             let confirmedList = "✅ 참석확정자 명단\n\n";
             confirmedList += `총 ${confirmedGeneral.length + confirmedStaff.length}명 참석확정\n\n`;
             
-            confirmedList += "=== 일반 참석자 ===\n";
+            confirmedList += "=== 참석자 ===\n";
             if (confirmedGeneral.length === 0) {
-                confirmedList += "확정된 일반 참석자가 없습니다.\n";
+                confirmedList += "확정된 참석자가 없습니다.\n";
             } else {
                 confirmedGeneral.forEach((attendee, index) => {
                     confirmedList += `${index + 1}. ${attendee.name} (${attendee.organization || '개인'})\n`;
